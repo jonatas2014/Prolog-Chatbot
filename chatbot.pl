@@ -17,7 +17,7 @@ conversations:-
         print_report, !,halt.
 gen_reply(S, R):-
         is_quit(S), !,
-        responses_db(bye, Res), 
+        responses_db(tchau, Res), 
         random_pick(Res, R).
 gen_reply(S, R):-
         is_thanks(S), !,
@@ -95,7 +95,7 @@ is_thanks(S):-
 
 
 is_quit(S):- 
-        subset([bye], S).
+        subset([tchau], S).
 
 
 get_location(0).
@@ -222,9 +222,9 @@ random_pick(Res, R):-
 
 
 print_report:-
-        write('\n--- Conversation report ---\n'),
+        write('\n--- Relatório ---\n'),
         usr_name(X), usr_location(Y), alevel(Z), 
-        write_list(['User name: ', X, '\nFrom: ', Y, '\nStudying: ', Z]),
+        write_list(['Nome do usuário: ', X, '\nDe onde: ', Y, '\nEstudando: ', Z]),
         retract(usr_name(X)),retract(usr_location(Y)), retract(alevel(Z)), fail.
 print_report:-
         nl, feedback(X, Y), write(X), write(' : '), write_list(Y), 
@@ -236,7 +236,7 @@ print_report.
 
 
 
-responses_db(bye, [
+responses_db(tchau, [
         ['Tchau!'], 
         ['Espero vê-lo de novo.'], 
         ['Tenha um bom dia!'],
@@ -521,12 +521,12 @@ question(q(X, Y, Z)) --> adverb(X), indicative_verb(Y), subject_pronoun(Z).
 question( q(qual, é, X, Y ) ) -->  [qual, é],  belonging_phrase(X),  
                                      abstract_noun(Y).   
 
-mapping(s2porque, 
+mapping(s2why, 
         s(sp(spn(N1)),vb(V),op(opn(N2),ad(X))),
         q(porque,faz,s(sp(spn(P1)),vb(V),op(opn(P2),ad(X)))) 
         ) :- 
         mapping_spn(N1, P1), mapping_opn(N2, P2). 
-mapping(s2porque,
+mapping(s2why,
         s(sp(spn(N1)),vb(V),op(np(noun(N2)),ad(X))),
         q(porque,faz,s(sp(spn(P1)),vb(V),op(np(noun(N2)),ad(X)))) 
         ) :- 
