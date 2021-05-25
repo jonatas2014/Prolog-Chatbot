@@ -1,0 +1,3 @@
+-> Não está reconhecendo quando o usuário digita tchau
+
+-> Não está reconhecendo apenas os nomes de nomes.pl, ele considera qualquer coisa como nome, o que não está correto 
